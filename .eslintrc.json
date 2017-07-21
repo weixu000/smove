@@ -1,0 +1,55 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": false
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "script"
+    },
+    "rules": {
+        "no-const-assign": "warn",
+        "no-this-before-super": "warn",
+        "no-undef": "warn",
+        "no-unreachable": "warn",
+        "no-unused-vars": "warn",
+        "constructor-super": "warn",
+        "valid-typeof": "warn"
+    },
+    "globals": {
+        "ctx": false,
+        "width": false,
+        "height": false,
+        "drawMin": false,
+        "drawMax": false,
+        "drawX": false,
+        "drawY": false,
+
+        "random": false,
+        "computePos": false,
+        "collision": false,
+
+        "drawBackground": false,
+        "drawBox": false,
+        "cellSize": false,
+        "boxSize": false,
+        "ballRadius": false,
+        "n": false,
+
+        "playerSpeed": false,
+        "Player": false,
+        "Motion": false,
+        "player": false,
+
+        "Enemy": false,
+        "totalEnemies": false,
+        "controlEnemy": false,
+        "enemyList": false,
+
+        "Food": false
+    }
+}
