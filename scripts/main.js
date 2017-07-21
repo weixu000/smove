@@ -19,15 +19,23 @@ function update() {
 var updateID, controlID;
 const updateInterval = 10;
 const controInterval = updateInterval * 10;
+updateID = window.setInterval(update, updateInterval);
+controlID = window.setInterval(controlEnemy, controInterval);
 
 window.onfocus = () => {
-    updateID = window.setInterval(update, updateInterval);
-    controlID = window.setInterval(controlEnemy, controInterval);
+    if (updateID) {
+        updateID = window.setInterval(update, updateInterval);
+    }
+    if (controlID) {
+        controlID = window.setInterval(controlEnemy, controInterval);
+    }
 }
 
 window.onblur = () => {
     window.clearInterval(updateID);
+    updateID = undefined;
     window.clearInterval(controlID);
+    controlID = undefined;
 }
 
 function redraw() {
