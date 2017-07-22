@@ -85,7 +85,7 @@ var deb = document.querySelector('#debug');
 deb.textContent = 'debug';
 window.ontouchstart = (e) => {
     let touch = e.changedTouches[0];
-    deb.textContent = 'ontouchstart ' + touch.target;
+    deb.textContent = 'ontouchstart ' + touch.target.id;
     if (touch.target === canvas) {
         event.preventDefault();
         touchPos = {
