@@ -32,8 +32,7 @@
 
         "random": false,
         "computePos": false,
-        "collision": false,
-        "calcCell": false,
+        "initParams": false,
 
         "drawBackground": false,
         "drawBox": false,
@@ -41,7 +40,8 @@
         "boxSize": false,
         "ballRadius": false,
         "n": false,
-
+        "nMax": false,
+        "nMin": false,
 
         "playerSpeed": false,
         "Player": false,
@@ -53,18 +53,18 @@
         "controlEnemy": false,
         "enemyList": false,
         "enemySpeed": false,
+        "enemyTargetRange": false,
 
         "Food": false,
         "foodRespawnWait": false,
 
         "playDiv": false,
-        "tryagain": false,
+        "tryAgain": false,
         "pauseDiv": false,
         "score": false,
         "harder": false,
-
-        "updateInterval": false,
-        "controlInterval": false,
+        "best": false,
+        "normal": false,
 
         "GameState": false,
         "state": false

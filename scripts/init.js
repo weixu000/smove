@@ -1,10 +1,33 @@
+const drawMin = 2000;
+const cellSize = 0.1 * drawMin;
+const ballRadius = 0.2 * cellSize;
+var width, height;
+var drawMax, drawX, drawY;
+
+const playerSpeed = 0.2;
+
+const nMax = 8,
+    nMin = 2;
+var n;
+var boxSize;
+
+var totalEnemies;
+var enemySpeed;
+var foodRespawnWait;
+var enemyTargetRange;
+
+function initParams() {
+    n = nMax;
+    boxSize = cellSize * n;
+    totalEnemies = 30;
+    enemySpeed = playerSpeed * 20;
+    foodRespawnWait = 2000;
+    enemyTargetRange = 1.5;
+}
+initParams();
+
 var canvas = document.querySelector('canvas');
 var ctx = canvas.getContext('2d');
-
-var width, height;
-const drawMin = 2000;
-var drawMax, drawX, drawY;
-const boxSize = 0.6 * drawMin;
 
 function autoSize() {
     width = canvas.width = window.innerWidth;
@@ -30,16 +53,6 @@ function drawBackground() {
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 }
-
-var n = 8;
-var cellSize;
-var ballRadius;
-
-function calcCell() {
-    cellSize = boxSize / n;
-    ballRadius = 0.2 * cellSize;
-}
-calcCell();
 
 function drawBox() {
     const radius = 0.5 * cellSize;
@@ -83,23 +96,12 @@ function computePos(x_) {
     return -boxSize / 2 + cellSize * x_ + cellSize * 0.5;
 }
 
-function collision(ball1, ball2) {
-    let dx = ball1.x - ball2.x,
-        dy = ball1.y - ball2.y;
-    return Math.sqrt(dx * dx + dy * dy) <= 2 * ballRadius;
-}
-
-var totalEnemies = 10;
-const updateInterval = 10;
-const controlInterval = updateInterval * 10;
-const playerSpeed = 0.2;
-var enemySpeed = playerSpeed * 20;
-var foodRespawnWait = 2000;
-
 var playDiv = document.querySelector('#play');
-var tryagain = document.querySelector('#tryagain');
+var tryAgain = document.querySelector('#tryagain');
 var pauseDiv = document.querySelector('#pause');
 var score = document.querySelector('#score');
+var best = document.querySelector('#best');
+var normal = document.querySelector('#normal');
 var harder = document.querySelector('#harder');
 
 const GameState = {

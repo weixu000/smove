@@ -6,13 +6,28 @@ function Enemy(x, y, vx, vy) {
     this.y = y;
     this.vx = vx;
     this.vy = vy;
+    this.angle = Math.atan2(vy, vx);
 }
 Enemy.prototype.draw = function () {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.angle);
+
     ctx.beginPath();
     ctx.fillStyle = 'black';
-    ctx.arc(this.x, this.y, ballRadius, 0, 2 * Math.PI);
+    ctx.arc(0, 0, ballRadius, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fill();
+
+    for (var i = 1; i < 4; i++) {
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(255, 255, 255, ' + Number(0.8 - i / 7) + ')';
+        ctx.arc(-i * 2 * ballRadius, 0, ballRadius * 0.2, 0, 2 * Math.PI);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    ctx.restore();
 }
 Enemy.prototype.update = function () {
     this.x += this.vx;
@@ -39,8 +54,8 @@ function respawnEnemy() {
         x = (Math.random() - 0.5) * drawX;
         y = Math.random() < 0.5 ? -drawY / 2 - ballRadius : drawY / 2 + ballRadius;
     }
-    let tx = (Math.random() - 0.5) * boxSize * 1.1;
-    let ty = (Math.random() - 0.5) * boxSize * 1.1;
+    let tx = (Math.random() - 0.5) * boxSize * enemyTargetRange;
+    let ty = (Math.random() - 0.5) * boxSize * enemyTargetRange;
     let vx = tx - x;
     let vy = ty - y;
     enemyList.push(new Enemy(x, y, vx, vy));
