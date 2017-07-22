@@ -20,8 +20,6 @@ Enemy.prototype.update = function () {
     this.y += this.vy;
 }
 
-var enemyList = [];
-
 function cleanupEnemy() {
     enemyList.forEach((e, index) => {
         if (e.x < -drawX - ballRadius * 2 || e.x > drawX + ballRadius * 2 || e.y < -drawY - ballRadius * 2 || e.y > drawY + ballRadius * 2) {

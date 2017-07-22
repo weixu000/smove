@@ -34,7 +34,6 @@ var n = 4;
 const boxSize = 0.6 * drawMin;
 var cellSize = boxSize / n;
 var ballRadius = 0.2 * cellSize;
-const playerSpeed = 0.2;
 
 function drawBox() {
     const radius = 0.18 * boxSize;
@@ -85,3 +84,11 @@ function collision(ball1, ball2) {
 }
 
 const totalEnemies = 10;
+const updateInterval = 10;
+const controlInterval = updateInterval * 10;
+const playerSpeed = 0.2;
+const foodRespawnWait = 2000;
+
+var playDiv = document.querySelector('#play');
+var tryagain = document.querySelector('#tryagain');
+var score = document.querySelector('#score');

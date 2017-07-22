@@ -1,7 +1,7 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
+        "commonjs": false,
         "es6": true,
         "node": false
     },
@@ -40,6 +40,7 @@
         "ballRadius": false,
         "n": false,
 
+
         "playerSpeed": false,
         "Player": false,
         "Motion": false,
@@ -50,6 +51,14 @@
         "controlEnemy": false,
         "enemyList": false,
 
-        "Food": false
+        "Food": false,
+        "foodRespawnWait": false,
+
+        "playDiv": false,
+        "tryagain": false,
+        "score": false,
+
+        "updateInterval": false,
+        "controlInterval": false
     }
 }

@@ -23,6 +23,9 @@ const Motion = {
     right: 4,
 };
 Player.prototype.updatePosition = function (m) {
+    if (Math.abs(this.x - computePos(this.x_)) > 0.1 * cellSize || Math.abs(this.y - computePos(this.y_) > 0.1 * cellSize)) {
+        return;
+    }
     switch (m) {
         case Motion.up:
             if (this.y_ !== 0) {
@@ -45,28 +48,6 @@ Player.prototype.updatePosition = function (m) {
             }
             break;
         default:
-            break;
-    }
-}
-
-var player = new Player(random(0, n - 1), random(0, n - 1));
-window.onkeydown = (e) => {
-    switch (e.code) {
-        case "KeyS":
-        case "ArrowDown":
-            player.updatePosition(Motion.down);
-            break;
-        case "KeyW":
-        case "ArrowUp":
-            player.updatePosition(Motion.up);
-            break;
-        case "KeyA":
-        case "ArrowLeft":
-            player.updatePosition(Motion.left);
-            break;
-        case "KeyD":
-        case "ArrowRight":
-            player.updatePosition(Motion.right);
             break;
     }
 }
