@@ -16,6 +16,11 @@ div {
     height: 100%;
 }
 
+#gamebar {
+    width: 100%;
+    height: auto;
+}
+
 #score {
     float: left;
     font-size: 300%;
