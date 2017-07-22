@@ -18,7 +18,7 @@ div {
 
 #score {
     float: left;
-    font-size: 500%;
+    font-size: 300%;
 }
 
 #harder {
@@ -31,14 +31,17 @@ canvas {
 }
 
 .prompt-bg {
-    background-color: rgba(255, 0, 0, 40%);
+    background-color: rgba(255, 0, 0, 30%);
 }
 
-div .center {
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 50%;
     top: 25%;
-    background-color: rgba(255, 0, 0, 50%);
+    background-color: rgba(255, 0, 0, 40%);
 }
 
 .center .info {
