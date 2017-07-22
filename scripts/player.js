@@ -95,7 +95,7 @@ window.ontouchmove = (e) => {
     let touch = e.changedTouches[0];
     if (touch.target === canvas) {
         event.preventDefault();
-        let m = Math.min(width, height) / drawMin * cellSize * 1.5;
+        let m = Math.min(width, height) / drawMin * cellSize / n;
         let dx = touch.clientX - touchPos.x,
             dy = touch.clientY - touchPos.y;
         if (Math.abs(dx) > m || Math.abs(dy) > m) {
