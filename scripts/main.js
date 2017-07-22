@@ -28,6 +28,8 @@ function play() {
     let bestScore = localStorage.getItem('best');
     if (bestScore) {
         best.textContent = 'Best:' + bestScore;
+    } else {
+        best.textContent = '';
     }
     score.textContent = 0;
 
