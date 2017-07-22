@@ -7,7 +7,6 @@ function Enemy(x, y, vx, vy) {
     this.vx = vx;
     this.vy = vy;
 }
-const enemySpeed = playerSpeed * 10;
 Enemy.prototype.draw = function () {
     ctx.beginPath();
     ctx.fillStyle = 'black';

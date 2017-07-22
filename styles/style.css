@@ -17,8 +17,13 @@ div {
 }
 
 #score {
-    position: absolute;
+    float: left;
     font-size: 500%;
+}
+
+#harder {
+    float: right;
+    font-size: 300%;
 }
 
 canvas {

@@ -4,6 +4,7 @@ var ctx = canvas.getContext('2d');
 var width, height;
 const drawMin = 2000;
 var drawMax, drawX, drawY;
+const boxSize = 0.6 * drawMin;
 
 function autoSize() {
     width = canvas.width = window.innerWidth;
@@ -30,13 +31,18 @@ function drawBackground() {
     ctx.fillRect(0, 0, width, height);
 }
 
-var n = 4;
-const boxSize = 0.6 * drawMin;
-var cellSize = boxSize / n;
-var ballRadius = 0.2 * cellSize;
+var n = 8;
+var cellSize;
+var ballRadius;
+
+function calcCell() {
+    cellSize = boxSize / n;
+    ballRadius = 0.2 * cellSize;
+}
+calcCell();
 
 function drawBox() {
-    const radius = 0.18 * boxSize;
+    const radius = 0.5 * cellSize;
     const gap = boxSize / 50;
 
     ctx.strokeStyle = 'white';
@@ -83,13 +89,21 @@ function collision(ball1, ball2) {
     return Math.sqrt(dx * dx + dy * dy) <= 2 * ballRadius;
 }
 
-const totalEnemies = 10;
+var totalEnemies = 10;
 const updateInterval = 10;
 const controlInterval = updateInterval * 10;
 const playerSpeed = 0.2;
-const foodRespawnWait = 2000;
+var enemySpeed = playerSpeed * 20;
+var foodRespawnWait = 2000;
 
 var playDiv = document.querySelector('#play');
 var tryagain = document.querySelector('#tryagain');
 var pauseDiv = document.querySelector('#pause');
 var score = document.querySelector('#score');
+var harder = document.querySelector('#harder');
+
+const GameState = {
+    halt: 0,
+    play: 1,
+};
+var state = GameState.halt;

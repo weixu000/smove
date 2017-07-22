@@ -2,38 +2,8 @@ var food;
 var enemyList = [];
 var player;
 
-const gameState = {
-    halt: 0,
-    play: 1,
-};
-var state = gameState.halt;
-
-function play() {
-    score.textContent = 0;
-    enemyList = [];
-    food = undefined;
-    foodRespawnID = undefined;
-    player = new Player(random(0, n - 1), random(0, n - 1));
-    state = gameState.play;
-    playDiv.style.visibility = 'hidden';
-    tryagain.style.visibility = 'hidden';
-    resume();
-    window.onfocus = resume;
-    window.onblur = pause;
-}
-playDiv.querySelector('.center').onclick = play;
-tryagain.querySelector('.center').onclick = play;
-
-function over() {
-    state = gameState.halt;
-    pause(false);
-    window.onfocus = null;
-    window.onblur = null;
-    tryagain.style.visibility = 'visible';
-}
-
 window.onkeydown = (e) => {
-    if (state === gameState.play) {
+    if (state === GameState.play) {
         switch (e.key) {
             case 's':
             case 'S':
@@ -59,6 +29,41 @@ window.onkeydown = (e) => {
     }
 
 }
+
+function play() {
+    score.textContent = 0;
+    enemyList = [];
+    food = undefined;
+    foodRespawnID = undefined;
+    player = new Player(random(0, n - 1), random(0, n - 1));
+    state = GameState.play;
+    playDiv.style.visibility = 'hidden';
+    tryagain.style.visibility = 'hidden';
+    resume();
+    window.onfocus = resume;
+    window.onblur = pause;
+}
+playDiv.querySelector('.center').onclick = play;
+tryagain.querySelector('.center').onclick = play;
+
+function over() {
+    state = GameState.halt;
+    pause(false);
+    window.onfocus = null;
+    window.onblur = null;
+    tryagain.style.visibility = 'visible';
+}
+
+function goHarder() {
+    if (n > 2) {
+        n -= 1;
+        calcCell();
+        enemySpeed *= 1.1;
+        totalEnemies *= 1.5;
+        play();
+    }
+}
+harder.onclick = goHarder;
 
 var foodRespawnID;
 
@@ -93,8 +98,12 @@ var updateID, controlID;
 
 function resume() {
     pauseDiv.style.visibility = 'hidden';
-    updateID = window.setInterval(update, updateInterval);
-    controlID = window.setInterval(controlEnemy, controlInterval);
+    if (!updateID) {
+        updateID = window.setInterval(update, updateInterval);
+    }
+    if (!controlID) {
+        controlID = window.setInterval(controlEnemy, controlInterval);
+    }
 }
 
 function pause(showDiv = true) {
@@ -102,7 +111,9 @@ function pause(showDiv = true) {
         pauseDiv.style.visibility = 'visible';
     }
     window.clearInterval(updateID);
+    updateID = undefined;
     window.clearInterval(controlID);
+    controlID = undefined;
 }
 
 function redraw() {
