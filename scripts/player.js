@@ -81,8 +81,11 @@ window.onkeydown = (e) => {
 }
 
 var touchPos;
+var deb = document.querySelector('#debug');
+deb.textContent = 'debug';
 window.ontouchstart = (e) => {
     let touch = e.changedTouches[0];
+    deb.textContent = 'ontouchstart ' + touch.target;
     if (touch.target === canvas) {
         event.preventDefault();
         touchPos = {
@@ -109,12 +112,5 @@ window.ontouchmove = (e) => {
                 y: touch.clientY
             };
         }
-    }
-}
-window.ontouchend = (e) => {
-    let touch = e.changedTouches[0];
-    if (touch.target === canvas) {
-        event.preventDefault();
-        touchPos = undefined;
     }
 }
