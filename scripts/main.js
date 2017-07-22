@@ -12,6 +12,7 @@ function play() {
     score.textContent = 0;
     enemyList = [];
     food = undefined;
+    foodRespawnID = undefined;
     player = new Player(random(0, n - 1), random(0, n - 1));
     state = gameState.play;
     playDiv.style.visibility = 'hidden';
@@ -33,20 +34,16 @@ function over() {
 
 window.onkeydown = (e) => {
     if (state === gameState.play) {
-        switch (e.code) {
-            case "KeyS":
+        switch (e.key) {
             case "ArrowDown":
                 player.updatePosition(Motion.down);
                 break;
-            case "KeyW":
             case "ArrowUp":
                 player.updatePosition(Motion.up);
                 break;
-            case "KeyA":
             case "ArrowLeft":
                 player.updatePosition(Motion.left);
                 break;
-            case "KeyD":
             case "ArrowRight":
                 player.updatePosition(Motion.right);
                 break;
