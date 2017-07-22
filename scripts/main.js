@@ -29,7 +29,6 @@ function play() {
     if (bestScore) {
         best.textContent = 'Best:' + bestScore;
     }
-    score.textContent = 0;
 
     enemyList = [];
     food = undefined;
@@ -47,8 +46,8 @@ function play() {
     window.onfocus = resume;
     window.onblur = pause;
 }
-playDiv.querySelector('.center').onclick = play;
-tryAgain.querySelector('.center').onclick = play;
+playDiv.onclick = play;
+tryAgain.onclick = play;
 
 function over() {
     state = GameState.halt;
@@ -61,6 +60,7 @@ function over() {
     if (!bestScore || bestScore < Number(score.textContent)) {
         localStorage.setItem('best', Number(score.textContent));
     }
+    score.textContent = 0;
 }
 
 function collision(ball1, ball2) {
