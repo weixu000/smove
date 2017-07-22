@@ -51,3 +51,63 @@ Player.prototype.updatePosition = function (m) {
             break;
     }
 }
+
+window.onkeydown = (e) => {
+    if (state === GameState.play) {
+        switch (e.key) {
+            case 's':
+            case 'S':
+            case 'ArrowDown':
+                player.updatePosition(Motion.down);
+                break;
+            case 'w':
+            case 'W':
+            case 'ArrowUp':
+                player.updatePosition(Motion.up);
+                break;
+            case 'a':
+            case 'A':
+            case 'ArrowLeft':
+                player.updatePosition(Motion.left);
+                break;
+            case 'd':
+            case 'D':
+            case 'ArrowRight':
+                player.updatePosition(Motion.right);
+                break;
+        }
+    }
+
+}
+
+var touchPos;
+window.ontouchstart = (e) => {
+    event.preventDefault();
+    let touch = e.targetTouch[0];
+    touchPos = {
+        x: touch.clientX,
+        y: touch.clientY
+    };
+}
+window.ontouchmove = (e) => {
+    event.preventDefault();
+    let touch = e.targetTouch[0];
+    let m = Math.min(width, height) / 20;
+    let dx = touch.clientX - touchPos.x,
+        dy = touch.clientY - touchPos.y;
+    if (Math.abs(dx) > m || Math.abs(dy) > m) {
+        if (Math.abs(dx) >= Math.abs(dy)) {
+            player.updatePosition(dx <= 0 ? Motion.left : Motion.right);
+        } else {
+            player.updatePosition(dy <= 0 ? Motion.up : Motion.down);
+        }
+        touchPos = {
+            x: touch.clientX,
+            y: touch.clientY
+        };
+    }
+}
+window.ontouchend = (e) => {
+    event.preventDefault();
+    touchPos = undefined;
+}

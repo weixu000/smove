@@ -2,34 +2,6 @@ var food;
 var enemyList = [];
 var player;
 
-window.onkeydown = (e) => {
-    if (state === GameState.play) {
-        switch (e.key) {
-            case 's':
-            case 'S':
-            case 'ArrowDown':
-                player.updatePosition(Motion.down);
-                break;
-            case 'w':
-            case 'W':
-            case 'ArrowUp':
-                player.updatePosition(Motion.up);
-                break;
-            case 'a':
-            case 'A':
-            case 'ArrowLeft':
-                player.updatePosition(Motion.left);
-                break;
-            case 'd':
-            case 'D':
-            case 'ArrowRight':
-                player.updatePosition(Motion.right);
-                break;
-        }
-    }
-
-}
-
 function play() {
     score.textContent = 0;
     enemyList = [];
