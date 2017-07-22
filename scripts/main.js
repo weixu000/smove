@@ -29,6 +29,7 @@ function play() {
     if (bestScore) {
         best.textContent = 'Best:' + bestScore;
     }
+    score.textContent = 0;
 
     enemyList = [];
     food = undefined;
@@ -60,7 +61,6 @@ function over() {
     if (!bestScore || bestScore < Number(score.textContent)) {
         localStorage.setItem('best', Number(score.textContent));
     }
-    score.textContent = 0;
 }
 
 function collision(ball1, ball2) {
@@ -98,18 +98,18 @@ function update() {
     }
 }
 
-var updateID, controlID;
+var updateID, controlEnemyID;
 
 const updateInterval = 10;
-const controlInterval = updateInterval * 10;
+const controlEnemyInterval = updateInterval * 10;
 
 function resume() {
     pauseDiv.style.visibility = 'hidden';
     if (!updateID) {
         updateID = window.setInterval(update, updateInterval);
     }
-    if (!controlID) {
-        controlID = window.setInterval(controlEnemy, controlInterval);
+    if (!controlEnemyID) {
+        controlEnemyID = window.setInterval(controlEnemy, controlEnemyInterval);
     }
 }
 
@@ -119,8 +119,8 @@ function pause(showDiv = true) {
     }
     window.clearInterval(updateID);
     updateID = undefined;
-    window.clearInterval(controlID);
-    controlID = undefined;
+    window.clearInterval(controlEnemyID);
+    controlEnemyID = undefined;
 }
 
 function redraw() {
