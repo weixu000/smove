@@ -35,11 +35,6 @@ div {
     cursor: pointer;
 }
 
-#debug {
-    float: left;
-    font-size: 200%;
-}
-
 canvas {
     display: block;
 }
