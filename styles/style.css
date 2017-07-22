@@ -25,6 +25,9 @@ div {
     float: right;
     font-size: 300%;
 }
+#harder:hover{
+    cursor: pointer;
+}
 
 canvas {
     display: block;
