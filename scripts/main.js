@@ -26,7 +26,7 @@ tryagain.querySelector('.center').onclick = play;
 
 function over() {
     state = gameState.halt;
-    pause();
+    pause(false);
     window.onfocus = null;
     window.onblur = null;
     tryagain.style.visibility = 'visible';
@@ -35,16 +35,24 @@ function over() {
 window.onkeydown = (e) => {
     if (state === gameState.play) {
         switch (e.key) {
-            case "ArrowDown":
+            case 's':
+            case 'S':
+            case 'ArrowDown':
                 player.updatePosition(Motion.down);
                 break;
-            case "ArrowUp":
+            case 'w':
+            case 'W':
+            case 'ArrowUp':
                 player.updatePosition(Motion.up);
                 break;
-            case "ArrowLeft":
+            case 'a':
+            case 'A':
+            case 'ArrowLeft':
                 player.updatePosition(Motion.left);
                 break;
-            case "ArrowRight":
+            case 'd':
+            case 'D':
+            case 'ArrowRight':
                 player.updatePosition(Motion.right);
                 break;
         }
@@ -84,11 +92,15 @@ function update() {
 var updateID, controlID;
 
 function resume() {
+    pauseDiv.style.visibility = 'hidden';
     updateID = window.setInterval(update, updateInterval);
     controlID = window.setInterval(controlEnemy, controlInterval);
 }
 
-function pause() {
+function pause(showDiv = true) {
+    if (showDiv) {
+        pauseDiv.style.visibility = 'visible';
+    }
     window.clearInterval(updateID);
     window.clearInterval(controlID);
 }

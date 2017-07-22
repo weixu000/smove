@@ -91,4 +91,5 @@ const foodRespawnWait = 2000;
 
 var playDiv = document.querySelector('#play');
 var tryagain = document.querySelector('#tryagain');
+var pauseDiv = document.querySelector('#pause');
 var score = document.querySelector('#score');

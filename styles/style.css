@@ -16,6 +16,15 @@ div {
     height: 100%;
 }
 
+#score {
+    position: absolute;
+    font-size: 500%;
+}
+
+canvas {
+    display: block;
+}
+
 .prompt-bg {
     background-color: rgba(255, 0, 0, 40%);
 }
@@ -32,15 +41,7 @@ div .center {
     font-size: 500%;
 }
 
-#score {
-    position: absolute;
-    font-size: 500%;
-}
-
-#tryagain {
+#tryagain,
+#pause {
     visibility: hidden;
-}
-
-canvas {
-    display: block;
 }
