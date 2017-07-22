@@ -21,6 +21,7 @@
         "valid-typeof": "warn"
     },
     "globals": {
+        "canvas": false,
         "ctx": false,
         "width": false,
         "height": false,

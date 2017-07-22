@@ -82,32 +82,39 @@ window.onkeydown = (e) => {
 
 var touchPos;
 window.ontouchstart = (e) => {
-    event.preventDefault();
-    let touch = e.targetTouch[0];
-    touchPos = {
-        x: touch.clientX,
-        y: touch.clientY
-    };
-}
-window.ontouchmove = (e) => {
-    event.preventDefault();
-    let touch = e.targetTouch[0];
-    let m = Math.min(width, height) / 20;
-    let dx = touch.clientX - touchPos.x,
-        dy = touch.clientY - touchPos.y;
-    if (Math.abs(dx) > m || Math.abs(dy) > m) {
-        if (Math.abs(dx) >= Math.abs(dy)) {
-            player.updatePosition(dx <= 0 ? Motion.left : Motion.right);
-        } else {
-            player.updatePosition(dy <= 0 ? Motion.up : Motion.down);
-        }
+    let touch = e.changedTouches[0];
+    if (touch.target === canvas) {
+        event.preventDefault();
         touchPos = {
             x: touch.clientX,
             y: touch.clientY
         };
     }
 }
+window.ontouchmove = (e) => {
+    let touch = e.changedTouches[0];
+    if (touch.target === canvas) {
+        event.preventDefault();
+        let m = Math.min(width, height) / 20;
+        let dx = touch.clientX - touchPos.x,
+            dy = touch.clientY - touchPos.y;
+        if (Math.abs(dx) > m || Math.abs(dy) > m) {
+            if (Math.abs(dx) >= Math.abs(dy)) {
+                player.updatePosition(dx <= 0 ? Motion.left : Motion.right);
+            } else {
+                player.updatePosition(dy <= 0 ? Motion.up : Motion.down);
+            }
+            touchPos = {
+                x: touch.clientX,
+                y: touch.clientY
+            };
+        }
+    }
+}
 window.ontouchend = (e) => {
-    event.preventDefault();
-    touchPos = undefined;
+    let touch = e.changedTouches[0];
+    if (touch.target === canvas) {
+        event.preventDefault();
+        touchPos = undefined;
+    }
 }
