@@ -2,6 +2,28 @@ var food;
 var enemyList = [];
 var player;
 
+harder.onclick = () => {
+    if (n > nMin) {
+        normal.style.visibility = 'visible';
+        n -= 1;
+        boxSize = cellSize * n;
+        totalEnemies *= 0.85;
+        enemySpeed *= 1.2;
+        foodRespawnWait *= 1.1;
+        enemyTargetRange *= 0.8;
+        play();
+    } else if (n == nMin) {
+        harder.style.visibility = 'hidden';
+    }
+};
+
+normal.onclick = () => {
+    harder.style.visibility = 'visible';
+    normal.style.visibility = 'hidden';
+    initParams();
+    play();
+}
+
 function play() {
     let bestScore = localStorage.getItem('best');
     if (bestScore) {
@@ -39,28 +61,6 @@ function over() {
     if (!bestScore || bestScore < Number(score.textContent)) {
         localStorage.setItem('best', Number(score.textContent));
     }
-}
-
-harder.onclick = () => {
-    if (n > nMin) {
-        normal.style.visibility = 'visible';
-        n -= 1;
-        boxSize = cellSize * n;
-        totalEnemies *= 0.85;
-        enemySpeed *= 1.3;
-        foodRespawnWait *= 1.1;
-        enemyTargetRange *= 0.8;
-        play();
-    } else if (n == nMin) {
-        harder.style.visibility = 'hidden';
-    }
-};
-
-normal.onclick = () => {
-    harder.style.visibility = 'visible';
-    normal.style.visibility = 'hidden';
-    initParams();
-    play();
 }
 
 function collision(ball1, ball2) {
